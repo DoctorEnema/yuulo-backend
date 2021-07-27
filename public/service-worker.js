@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.68f94c1139048688aae72a7679883db3.js"
+  "/precache-manifest.74d35f0327a08875586f5465f875eedb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "yuulo"});
