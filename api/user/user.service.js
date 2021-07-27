@@ -8,9 +8,11 @@ module.exports = {
     query,
     getById,
     getByUsername,
+    getByEmail,
     remove,
     update,
-    add
+    add,
+    addGoogleUser
 }
 
 async function query(filterBy = {}) {
@@ -50,6 +52,19 @@ async function getById(userId) {
         throw err
     }
 }
+
+
+async function getByEmail(email) {
+    try {
+        const collection = await dbService.getCollection('user')
+        const user = await collection.findOne({ 'email': email })
+        return user
+    } catch (err) {
+        logger.error(`while finding user ${email}`, err)
+        throw err
+    }
+}
+
 async function getByUsername(username) {
     try {
         const collection = await dbService.getCollection('user')
@@ -77,10 +92,11 @@ async function update(user) {
         const userToSave = {
             _id: ObjectId(user._id),
             username: user.username,
-            fullname: user.fullname,
-            notifications: user.notifications,
-            imgUrl: user.imgUrl,
-            favBoardIds: user.favBoardIds
+            fullname: user.fullname || null,
+            email: user.email || null,
+            notifications: user.notifications || [],
+            imgUrl: user.imgUrl || null,
+            favBoardIds: user.favBoardIds || []
         }
         const collection = await dbService.getCollection('user')
         await collection.updateOne({ '_id': userToSave._id }, { $set: userToSave })
@@ -98,9 +114,27 @@ async function add(user) {
             username: user.username,
             password: user.password,
             fullname: user.fullname,
-            email: user.email,
+            email: user.email || null,
             notifications: user.notifications || [],
             imgUrl: user.imgUrl || null,
+        }
+        const collection = await dbService.getCollection('user')
+        await collection.insertOne(userToAdd)
+        return userToAdd
+    } catch (err) {
+        logger.error('cannot insert user', err)
+        throw err
+    }
+}
+
+async function addGoogleUser({ email, picture }) {
+    try {
+        const userToAdd = {
+            username: email.split('@')[0],
+            fullname: email.split('@')[0],
+            email: email,
+            notifications: [],
+            imgUrl: picture || null,
         }
         const collection = await dbService.getCollection('user')
         await collection.insertOne(userToAdd)

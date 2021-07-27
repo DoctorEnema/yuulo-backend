@@ -22,6 +22,16 @@ async function login(username, password) {
     return user
 }
 
+async function loginByEmail(email) {
+    logger.debug(`auth.service - login with email: ${email}`)
+
+    const user = await userService.getByEmail(email)
+    // console.log('file: auth.service.js ~ line 10 ~ login ~ user', user);
+    
+    if (!user) return undefined
+    return user
+}
+
 async function signup(username, password, fullname, email) {
     const saltRounds = 10
 
@@ -32,7 +42,15 @@ async function signup(username, password, fullname, email) {
     return userService.add({ username, password: hash, fullname, email })
 }
 
+async function signupGoogleUser(info) {
+    logger.debug(`auth.service - signup with email: ${info.email},`)
+    if (!info.email) return Promise.reject('email is required!')
+    return userService.addGoogleUser(info)
+}
+
 module.exports = {
     signup,
+    signupGoogleUser,
     login,
+    loginByEmail
 }
