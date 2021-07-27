@@ -8,8 +8,8 @@ const google = googleapis.google
 const googleConfig = {
   clientId: "77664739327-oa9va2n4jgbeho5h4gvl2i0pp45hqhnu.apps.googleusercontent.com",
   clientSecret: "cLAgDyvDabfvSb6r2wr7_fGl",   
-  redirect: "http://localhost:3030/api/auth/google/login/auth", // this must match your google api settings
-  // redirect: `https://yuulo.herokuapp.com:${process.env.PORT}/api/auth/google/login/auth`, // this must match your google api settings
+  // redirect: "http://localhost:3030/api/auth/google/login/auth", // this must match your google api settings
+  redirect: `https://yuulo.herokuapp.com/api/auth/google/login/auth`, // this must match your google api settings
 };
 
 const defaultScope = [
