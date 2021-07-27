@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d7f8a052cf9d8a93a898",
-    "url": "/css/app.e38113d9.css"
+    "revision": "d6005e65243db3439b07",
+    "url": "/css/app.34f1bb7c.css"
   },
   {
     "revision": "ce34c79a11bd90febc5e",
@@ -44,6 +44,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/yuumi-load.7b211b18.svg"
   },
   {
+    "revision": "4bf2989a7bc64d6caed1aaa0f6f78271",
+    "url": "/img/yuumi-mation.4bf2989a.svg"
+  },
+  {
     "revision": "76e7ca8723a9c106ef071811c03b009c",
     "url": "/img/yuumi-sleep.76e7ca87.png"
   },
@@ -52,12 +56,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/yuumi-wake.67fab9af.png"
   },
   {
-    "revision": "af8d3a701eb0234ba2f40ea8157ba75a",
+    "revision": "35026414c472d7ffe04617cdacf44d5b",
     "url": "/index.html"
   },
   {
-    "revision": "d7f8a052cf9d8a93a898",
-    "url": "/js/app.9b3086e7.js"
+    "revision": "d6005e65243db3439b07",
+    "url": "/js/app.16b26718.js"
   },
   {
     "revision": "ce34c79a11bd90febc5e",
