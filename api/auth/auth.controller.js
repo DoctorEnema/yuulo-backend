@@ -37,7 +37,7 @@ async function googleAuth(req, res) {
         req.session.user = user
         console.log(process.env.NODE_ENV,'process.env.NODE_ENV');
         if (process.env.NODE_ENV === 'production') {
-            res.status(301).redirect('https://yuulo.herokuapp.com')
+            res.status(301).redirect('https://yuulo.herokuapp.com/board/60fa7a223d6d273440477d69')
         } else {
             res.status(301).redirect('http://localhost:8080/board/60fa7a223d6d273440477d69')
         }
