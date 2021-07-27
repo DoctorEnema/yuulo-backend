@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "09e5cbd056eaa5d71373",
-    "url": "/css/app.071d28f8.css"
+    "revision": "20e5a3707116961d02c5",
+    "url": "/css/app.57bd12bd.css"
   },
   {
     "revision": "ce34c79a11bd90febc5e",
@@ -56,11 +56,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/yuumi-wake.67fab9af.png"
   },
   {
-    "revision": "260fc74b57d3eac600a9790212f4600d",
+    "revision": "e13f728c14770b05bed8c3e54d0fe8f7",
     "url": "/index.html"
   },
   {
-    "revision": "09e5cbd056eaa5d71373",
+    "revision": "20e5a3707116961d02c5",
     "url": "/js/app.b9099ccd.js"
   },
   {
