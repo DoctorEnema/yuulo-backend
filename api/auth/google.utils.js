@@ -4,12 +4,14 @@ const google = googleapis.google
 /*******************/
 /** CONFIGURATION **/
 /*******************/
+var redirect = (process.env.NODE_ENV === 'production') ? `https://yuulo.herokuapp.com/api/auth/google/login/auth` : 'http://localhost:3030/api/auth/google/login/auth'
 
 const googleConfig = {
   clientId: "77664739327-oa9va2n4jgbeho5h4gvl2i0pp45hqhnu.apps.googleusercontent.com",
-  clientSecret: "cLAgDyvDabfvSb6r2wr7_fGl",   
+  clientSecret: "cLAgDyvDabfvSb6r2wr7_fGl",
   // redirect: "http://localhost:3030/api/auth/google/login/auth", // this must match your google api settings
-  redirect: `https://yuulo.herokuapp.com/api/auth/google/login/auth`, // this must match your google api settings
+  // redirect: `https://yuulo.herokuapp.com/api/auth/google/login/auth`, // this must match your google api settings
+  redirect, // this must match your google api settings
 };
 
 const defaultScope = [
@@ -21,7 +23,7 @@ const defaultScope = [
 /** HELPERS **/
 /*************/
 
-function  createConnection() {
+function createConnection() {
   return new google.auth.OAuth2(
     googleConfig.clientId,
     googleConfig.clientSecret,
@@ -29,8 +31,8 @@ function  createConnection() {
   );
 }
 
-function  getConnectionUrl(auth) {
-  console.log("auth is: " +  auth.generateAuthUrl)
+function getConnectionUrl(auth) {
+  console.log("auth is: " + auth.generateAuthUrl)
   return auth.generateAuthUrl({
     access_type: 'offline',
     prompt: 'consent',
@@ -38,7 +40,7 @@ function  getConnectionUrl(auth) {
   });
 }
 
-function  getGooglePlusApi(auth) {
+function getGooglePlusApi(auth) {
   return google.plus({ version: 'v2', auth });
 }
 
@@ -51,7 +53,7 @@ function  getGooglePlusApi(auth) {
  */
 function urlGoogle() {
   const auth = createConnection();
-  console.log("auth is: "+ auth)
+  console.log("auth is: " + auth)
   const url = getConnectionUrl(auth);
   return url;
 }
@@ -63,7 +65,7 @@ async function getGoogleAccountFromCode(code) {
   const oauth2Client = createConnection();
   const data = await oauth2Client.getToken(code);
   const tokens = data.tokens;
-  
+
   oauth2Client.setCredentials(tokens)
   var oauth2 = google.oauth2({
     auth: oauth2Client,
@@ -73,16 +75,16 @@ async function getGoogleAccountFromCode(code) {
   console.log("this is the info " + JSON.stringify(userInfo))
   return userInfo;
 
-  
-//   const plus = getGooglePlusApi(auth);
-//   const me = await plus.people.get({ userId: 'me' });
-//   const userGoogleId = me.data.id;
-//   const userGoogleEmail = me.data.emails && me.data.emails.length && me.data.emails[0].value;
-//   return {
-//     id: userGoogleId,
-//     email: userGoogleEmail,
-//     tokens: tokens,
-//   };
+
+  //   const plus = getGooglePlusApi(auth);
+  //   const me = await plus.people.get({ userId: 'me' });
+  //   const userGoogleId = me.data.id;
+  //   const userGoogleEmail = me.data.emails && me.data.emails.length && me.data.emails[0].value;
+  //   return {
+  //     id: userGoogleId,
+  //     email: userGoogleEmail,
+  //     tokens: tokens,
+  //   };
 }
 
 module.exports = {

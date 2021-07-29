@@ -16,6 +16,7 @@ async function getBoards(req, res) {
 async function getBoard(req, res) {
     try {
         const board = await boardService.getById(req.params.id)
+        console.log('file: board.controller.js ~ line 19 ~ getBoard ~ board', board);
         res.send(board)
     } catch (err) {
         logger.error('Failed to get board', err)
